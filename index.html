@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
   <title>Saravana-NX AR Menu</title>
 
@@ -24,12 +26,15 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 10;
+
       background: rgba(0,0,0,0.75);
       color: white;
       padding: 10px 18px;
       border-radius: 20px;
-      font-weight: bold;
+
       font-size: 18px;
+      font-weight: bold;
+      white-space: nowrap;
     }
 
     #help {
@@ -38,11 +43,13 @@
       left: 5%;
       width: 90%;
       z-index: 10;
+
       background: rgba(0,0,0,0.75);
       color: white;
       padding: 12px;
       box-sizing: border-box;
       border-radius: 15px;
+
       text-align: center;
       font-size: 14px;
     }
@@ -55,13 +62,22 @@
 
   <div id="help">
     Allow camera access and point your camera at the printed menu.
+    <br>
     The AR menu will appear automatically.
   </div>
 
   <a-scene
-    mindar-image="imageTargetSrc: ./targets.mind; autoStart: true; uiLoading: no; uiError: no; uiScanning: yes;"
+    mindar-image="
+      imageTargetSrc: ./targets.mind;
+      autoStart: true;
+      uiLoading: no;
+      uiError: no;
+      uiScanning: yes;
+      filterMinCF: 0.0005;
+      filterBeta: 0.0005;
+    "
     color-space="sRGB"
-    renderer="colorManagement: true, physicallyCorrectLights"
+    renderer="colorManagement: true; physicallyCorrectLights"
     vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false">
 
@@ -70,12 +86,13 @@
       look-controls="enabled: false">
     </a-camera>
 
-    <!-- MENU PHOTO AS AR OBJECT -->
+    <!-- MENU -->
     <a-entity mindar-image-target="targetIndex: 0">
 
       <a-plane
         src="./menu.png"
         position="0 0 0"
+        rotation="0 0 0"
         width="1.4"
         height="1.0"
         material="shader: flat;">
